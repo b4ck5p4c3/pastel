@@ -1,6 +1,5 @@
 'use client'
 
-import { greeting } from '@/backend/actions/paste'
 import { EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 import { Button, Checkbox, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem } from '@heroui/react'
 
@@ -13,7 +12,6 @@ export interface AdvancedOptionsModalProperties {
 const AdvancedOptionsModal: React.FC<AdvancedOptionsModalProperties> = ({ isOpen, onClose, onConfirm }) => {
   const confirm = () => {
     onConfirm()
-    greeting().then(c => console.log(c))
   }
 
   return (
