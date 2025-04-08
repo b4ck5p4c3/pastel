@@ -16,6 +16,7 @@ const CreatePasteWidget: React.FC = () => {
 
   const confirm = () => {
     setAdvancedModal(false)
+    console.log(code)
   }
 
   return (

@@ -4,6 +4,7 @@ import { auth } from '@/auth'
 
 import './globals.css'
 
+// eslint-disable-next-line camelcase -- that's how the font is named
 import { Onest, Yeseva_One } from 'next/font/google'
 import { redirect } from 'next/navigation'
 import { SessionProvider } from 'next-auth/react'

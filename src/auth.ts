@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import 'next-auth/jwt'
+import { JWT } from 'next-auth/jwt'
 
 import { BkspIdProvider, refreshAccessToken } from './backend/auth/provider'
 
@@ -37,28 +38,28 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       if (account) {
         if (profile) {
           // Check that crucial fields are available
-          const { email, name, sub, username } = profile
-          if (!email || !name || !sub || !username) {
-            token['error'] = 'AccountNotLinked'
+          if (!profile.email || !profile.name || !profile.sub || !profile.username) {
+            token.error = 'AccountNotLinked'
             return token
           }
 
           return {
-            email,
-            expires_at: account.expires_at,
-            name,
+            email: profile.email as string,
+            error: undefined,
+            expires_at: account.expires_at as number,
+            name: profile.name as string,
             picture: profile.picture as null | string,
             refresh_token: account.refresh_token as null | string,
-            sub,
-            username,
-          }
+            sub: profile.sub as string,
+            username: profile.username as string,
+          } satisfies JWT
         }
 
         return {
           ...token,
-          expires_at: account.expires_at,
-          refresh_token: account.refresh_token,
-        }
+          expires_at: account.expires_at as number,
+          refresh_token: account.refresh_token ?? null,
+        } satisfies JWT
       }
 
       // Return access token if it is still valid
@@ -69,24 +70,24 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       // Access Token is expired, but refresh token is unavailable
       const refreshToken = token['refresh_token'] as string | undefined
       if (!refreshToken) {
-        token['error'] = 'RefreshTokenError'
+        token.error = 'RefreshTokenError'
         return token
       }
 
       // Attempt to renew access token
       try {
         const set = await refreshAccessToken(refreshToken)
-        token['access_token'] = set.access_token
-        token['exp'] = Math.floor(Date.now() / 1000 + set.expires_in)
+        token.access_token = set.access_token
+        token.exp = Math.floor(Date.now() / 1000 + set.expires_in)
 
         // Some providers only issue refresh tokens once, so preserve if we did not get a new one
         if (set.refresh_token) {
-          token['refresh_token'] = set.refresh_token
+          token.refresh_token = set.refresh_token
         }
 
         return token
       } catch {
-        token['error'] = 'RefreshTokenError'
+        token.error = 'RefreshTokenError'
         return token
       }
     },

@@ -17,7 +17,7 @@ const AdvancedOptionsModal: React.FC<AdvancedOptionsModalProperties> = ({ isOpen
   return (
     <Modal backdrop='blur' isOpen={isOpen} onClose={onClose} size='lg'>
       <ModalContent>
-        {(onClose) => (
+        {() => (
           <>
             <ModalHeader>
               <span>Advanced Publish</span>
