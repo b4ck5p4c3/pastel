@@ -11,3 +11,14 @@ export enum PasteExpiration {
   OneHour = '1h',
   OneWeek = '168h'
 }
+
+export interface SerialisedPasteMetadata {
+  createdAt: string;
+  createdBy: string;
+  expiration: PasteExpiration;
+  metadata: {
+    isEncrypted: boolean;
+    syntaxLanguage: string;
+  }
+  visibility: PasteVisibility;
+}

@@ -2,7 +2,7 @@ import { armor, Decrypter, Encrypter } from 'age-encryption'
 import { encode } from 'zbase32'
 
 export async function generateUrlSafeKey (): Promise<string> {
-  const entropy = crypto.getRandomValues(new Uint8Array(16))
+  const entropy = crypto.getRandomValues(new Uint8Array(32))
   return encode(entropy.buffer)
 }
 
