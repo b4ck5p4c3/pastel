@@ -139,6 +139,7 @@ const CreatePasteWidget: React.FC = () => {
             },
             renderLineHighlight: 'none',
             tabIndex: 0,
+            tabSize: 2,
           }}
           theme='vs-dark'
         />
