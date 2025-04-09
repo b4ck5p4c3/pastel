@@ -1,7 +1,6 @@
 import { auth } from '@/auth'
 import { Temporal } from '@js-temporal/polyfill'
-// import * as Sentry from '@sentry/nextjs'
-import * as Sentry from '@sentry/node'
+import * as Sentry from '@sentry/nextjs'
 import { initTRPC, TRPCError } from '@trpc/server'
 // eslint-disable-next-line camelcase -- this is an experimental feature
 import { experimental_nextAppDirCaller } from '@trpc/server/adapters/next-app-dir'
