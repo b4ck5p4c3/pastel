@@ -57,6 +57,9 @@
     ]
   },
   "dependencies": {
-    "@sentry/node": "^9.12.0"
+    "@sentry/node": "^9.12.0",
+    "age-encryption": "^0.2.1",
+    "react-hotkeys-hook": "^4.6.1",
+    "zbase32": "^2.0.6"
   }
 }

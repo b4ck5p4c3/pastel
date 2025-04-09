@@ -11,6 +11,15 @@ importers:
       '@sentry/node':
         specifier: ^9.12.0
         version: 9.12.0
+      age-encryption:
+        specifier: ^0.2.1
+        version: 0.2.1
+      react-hotkeys-hook:
+        specifier: ^4.6.1
+        version: 4.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      zbase32:
+        specifier: ^2.0.6
+        version: 2.0.6
     devDependencies:
       '@bksp/style-guide':
         specifier: ^0.16.0
@@ -1061,6 +1070,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@noble/ciphers@1.2.1':
+    resolution: {integrity: sha512-rONPWMC7PeExE077uLE4oqWrZ1IvAfz3oH9LibVAcVCopJiA9R62uavnbEzdkVmJYI6M6Zgkbeb07+tWjlq2XA==}
+    engines: {node: ^14.21.3 || >=16}
+
+  '@noble/curves@1.8.1':
+    resolution: {integrity: sha512-warwspo+UYUPep0Q+vtdVB4Ugn8GGQj8iyB3gnRWsztmUHTI3S1nhdiWNsPUGL0vud7JlRRk1XEu7Lq1KGTnMQ==}
+    engines: {node: ^14.21.3 || >=16}
+
+  '@noble/hashes@1.7.1':
+    resolution: {integrity: sha512-B8XBPsn4vT/KJAGqDzbwztd+6Yte3P4V7iafm24bxgDe/mlRuK6xmWPuCNrKt2vDafZ8MfJLlchDG/vYafQEjQ==}
+    engines: {node: ^14.21.3 || >=16}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2017,6 +2038,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@scure/base@1.2.4':
+    resolution: {integrity: sha512-5Yy9czTO47mqz+/J8GM6GIId4umdCk1wc1q8rKERQulIoc8VP9pzDcghv10Tl2E7R96ZUx/PhND3ESYUQX8NuQ==}
+
   '@sentry-internal/browser-utils@9.12.0':
     resolution: {integrity: sha512-GXuDEG2Ix8DmVtTkjsItWdusk2CvJ6EPWKYVqFKifxt+IAT3ZbhGZd99Rg3wdRmt9xhCNuS4QrDzDTPMPgfdCw==}
     engines: {node: '>=18'}
@@ -2419,6 +2443,9 @@ packages:
     resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  age-encryption@0.2.1:
+    resolution: {integrity: sha512-EGiFGUoXi02A16tgXTGPi5wt3osmNbjrT7uPAEXs1NxAMFdklW/LWJ5dPx88ZEJF/kRF9zIWDBQoN4ArOjNM8w==}
 
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -3757,6 +3784,12 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
+  react-hotkeys-hook@4.6.1:
+    resolution: {integrity: sha512-XlZpbKUj9tkfgPgT9gA+1p7Ey6vFIZHttUjPqpTdyT5nqQ8mHL7elxvSbaC+dpSiHUSmr21Ya1mDxBZG3aje4Q==}
+    peerDependencies:
+      react: '>=16.8.1'
+      react-dom: '>=16.8.1'
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -4273,6 +4306,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zbase32@2.0.6:
+    resolution: {integrity: sha512-Ipw3ZbXpaINHi0dA7X6HHettPRwjD/Zzx82d6ZbQSf4EsSDxc2g9Fuv2ZfGBalb3YnCZ9tvJUComucMpL61veA==}
 
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
@@ -5786,6 +5822,14 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.3.0-canary.40':
     optional: true
 
+  '@noble/ciphers@1.2.1': {}
+
+  '@noble/curves@1.8.1':
+    dependencies:
+      '@noble/hashes': 1.7.1
+
+  '@noble/hashes@1.7.1': {}
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -7152,6 +7196,8 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.35.0':
     optional: true
 
+  '@scure/base@1.2.4': {}
+
   '@sentry-internal/browser-utils@9.12.0':
     dependencies:
       '@sentry/core': 9.12.0
@@ -7668,6 +7714,13 @@ snapshots:
       acorn: 8.14.1
 
   acorn@8.14.1: {}
+
+  age-encryption@0.2.1:
+    dependencies:
+      '@noble/ciphers': 1.2.1
+      '@noble/curves': 1.8.1
+      '@noble/hashes': 1.7.1
+      '@scure/base': 1.2.4
 
   agent-base@6.0.2:
     dependencies:
@@ -9082,6 +9135,11 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
+  react-hotkeys-hook@4.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
   react-is@16.13.1: {}
 
   react-textarea-autosize@8.5.9(@types/react@19.1.0)(react@19.1.0):
@@ -9722,5 +9780,7 @@ snapshots:
   yallist@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zbase32@2.0.6: {}
 
   zod@3.24.2: {}

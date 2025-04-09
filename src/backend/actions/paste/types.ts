@@ -4,10 +4,10 @@ export enum PasteVisibility {
 }
 
 export enum PasteExpiration {
-  Never,
-  AfterFirstRead,
-  FifteenMinutes,
-  OneHour,
-  OneDay,
-  OneWeek,
+  AfterFirstRead = 'after-first-read',
+  FifteenMinutes = '15m',
+  Never = 'never',
+  OneDay = '24h',
+  OneHour = '1h',
+  OneWeek = '168h'
 }
