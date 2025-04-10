@@ -1,0 +1,40 @@
+services:
+  pastel:
+    build: https://github.com/b4ck5p4c3/pastel.git
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    environment:
+      - NEXT_PUBLIC_BASE_URL=https://p.bksp.in
+      - AUTH_SECRET=change-me-pls
+      - AUTH_BKSPID_CLIENT_ID=change-me-pls
+      - REDIS_URL=redis://valkey:6379/0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pastel.rule=Host(`p.bksp.in`)"
+      - "traefik.http.routers.pastel.entrypoints=web"
+    networks:
+      - pastel
+      - traefik
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    command: valkey-server --loglevel error --save 60 1
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    volumes:
+      - /srv/pastel/valkey:/data
+    networks:
+      - pastel
+
+networks:
+  pastel:
+  traefik:
+    external: true
