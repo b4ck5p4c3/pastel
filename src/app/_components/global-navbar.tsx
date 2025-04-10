@@ -108,6 +108,7 @@ export default function Navbar () {
             href='/'
           >
             Pastel
+            <sup className='text-sm ml-2'>β</sup>
           </HeroLink>
         </NavbarBrand>
       </NavbarContent>

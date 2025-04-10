@@ -2,9 +2,9 @@
 
 import type { PasteDetails } from '@/backend/actions/paste/dto/paste-details.dto'
 
-import { PasteVisibility } from '@/backend/actions/paste/types'
+import { PasteExpiration, PasteVisibility } from '@/backend/actions/paste/types'
 import { Button, Link } from '@heroui/react'
-import { useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import PasteDecrypt from './decrypt'
 import Reveal from './reveal'
@@ -19,12 +19,16 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
   const [isDecrypted, setIsDecrypted] = useState(!paste.metadata.isEncrypted)
   const [content, setContent] = useState(paste.content)
   const [copyButtonLabel, setCopyButtonLabel] = useState('Copy')
+  const [rawUrl, setRawUrl] = useState<null | string>(null)
 
-  const rawUrl = useMemo(() => {
-    if (paste.visibility === PasteVisibility.Public && !paste.metadata.isEncrypted) {
-      return globalThis.location.href + '/raw'
+  useEffect(() => {
+    if (
+      paste.visibility === PasteVisibility.Public &&
+      paste.expiration !== PasteExpiration.AfterFirstRead &&
+      !paste.metadata.isEncrypted
+    ) {
+      setRawUrl(globalThis.location.href + '/raw')
     }
-    return null
   }, [paste])
 
   const handleContentCopy = () => {
