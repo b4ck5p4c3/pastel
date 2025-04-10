@@ -43,6 +43,9 @@ export default async function RootLayout ({
           content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no'
           name='viewport'
         />
+        <meta content='Pastel' name='apple-mobile-web-app-title' />
+        <link href='icons/apple-icon.png' rel='apple-touch-icon' />
+        <link href='icons/favicon.png' rel='icon' type='image/png' />
       </head>
       <body className={`font-sans ${onest.variable} ${yeseva.variable}`}>
         <SessionProvider session={session}>
