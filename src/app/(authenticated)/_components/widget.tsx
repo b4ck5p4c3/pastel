@@ -59,14 +59,14 @@ const CreatePasteWidget: React.FC = () => {
     setAdvancedModalOpen(false)
   }
 
-  const saveQuick = async (content: string) => {
+  const saveQuick = async (content: string, language: string) => {
     setIsLoading(true)
     const response = await createPaste({
       content,
       expiration: PasteExpiration.OneHour,
       metadata: {
         isEncrypted: false,
-        syntaxLanguage: selectedLanguage
+        syntaxLanguage: language,
       },
       visibility: PasteVisibility.Public
     })
@@ -101,9 +101,9 @@ const CreatePasteWidget: React.FC = () => {
           return
         }
 
-        const content = currentEditor.getModel()?.getValue()
-        if (content) {
-          saveQuick(content)
+        const model = currentEditor.getModel()
+        if (model) {
+          saveQuick(model.getValue(), model.getLanguageId())
         }
       },
     })
@@ -146,7 +146,15 @@ const CreatePasteWidget: React.FC = () => {
         />
         <section className='flex flex-row justify-between items-center'>
           <section className='flex gap-4'>
-            <Button color='success' isDisabled={editorContent === undefined} isLoading={isLoading} onPress={() => saveQuick(editorContent as string)} size='lg' tabIndex={2} variant='bordered'>
+            <Button
+              color='success'
+              isDisabled={editorContent === undefined}
+              isLoading={isLoading}
+              onPress={() => saveQuick(editorContent as string, selectedLanguage)}
+              size='lg'
+              tabIndex={2}
+              variant='bordered'
+            >
               Publish for one hour
               <span aria-hidden className='text-success-200 text-sm' hidden={isLoading}>⌘Enter</span>
             </Button>
