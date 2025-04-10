@@ -6,7 +6,6 @@ import './globals.css'
 
 // eslint-disable-next-line camelcase -- that's how the font is named
 import { Onest, Yeseva_One } from 'next/font/google'
-import { redirect } from 'next/navigation'
 import { SessionProvider } from 'next-auth/react'
 
 import Navbar from './_components/global-navbar'
@@ -32,10 +31,6 @@ export default async function RootLayout ({
   children: React.ReactNode;
 }>) {
   const session = await auth()
-  if (!session?.user) {
-    redirect('/api/sso-sign-in')
-  }
-
   return (
     <html lang='en' suppressHydrationWarning>
       <head>

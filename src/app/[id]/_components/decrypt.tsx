@@ -1,6 +1,6 @@
 'use client'
 
-import { decrypt } from '@/app/(main)/_utils/encryption'
+import { decrypt } from '@/app/(authenticated)/_utils/encryption'
 import { Button, Input } from '@heroui/react'
 import { useEffect, useRef, useState } from 'react'
 

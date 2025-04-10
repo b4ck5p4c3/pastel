@@ -26,6 +26,30 @@ const handleAction = (action: Key) => {
   }
 }
 
+const AvatarTrigger: React.FC<{ image: null | string, name: string }> = ({ image, name }) => {
+  if (image) {
+    return (
+      <Avatar
+        color='secondary'
+        isBordered
+        name={name}
+        showFallback
+        size='sm'
+        src={image}
+      />
+    )
+  }
+
+  return (
+    <Avatar
+      color='secondary'
+      isBordered
+      name={name}
+      size='sm'
+    />
+  )
+}
+
 function NavbarUserMenu () {
   const session = useSession()
   const user = session.data?.user
@@ -37,20 +61,7 @@ function NavbarUserMenu () {
   return (
     <Dropdown backdrop='blur' placement='bottom-end'>
       <DropdownTrigger className='cursor-pointer'>
-        {user.image
-          ? (<Avatar
-              color='secondary'
-              isBordered
-              name={user.name}
-              showFallback
-              size='sm'
-              src={user.image}
-             />)
-          : (<Avatar
-              color='secondary'
-              isBordered
-              name={user.name}
-             />)}
+        <AvatarTrigger image={user.image} name={user.name} />
       </DropdownTrigger>
       <DropdownMenu
         aria-label='Profile Actions'
