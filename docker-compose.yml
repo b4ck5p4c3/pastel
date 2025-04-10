@@ -9,6 +9,7 @@ services:
         max-file: "1"
     environment:
       - NEXT_PUBLIC_BASE_URL=https://p.bksp.in
+      - AUTH_URL=https://p.bksp.in
       - AUTH_SECRET=change-me-pls
       - AUTH_BKSPID_CLIENT_ID=change-me-pls
       - REDIS_URL=redis://valkey:6379/0
