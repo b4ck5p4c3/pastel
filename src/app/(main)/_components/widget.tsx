@@ -138,6 +138,7 @@ const CreatePasteWidget: React.FC = () => {
               top: 16
             },
             renderLineHighlight: 'none',
+            renderValidationDecorations: 'off',
             tabIndex: 0,
             tabSize: 2,
           }}

@@ -42,3 +42,5 @@ export const PasteDetailsDto = z.object({
    */
   visibility: z.nativeEnum(PasteVisibility)
 })
+
+export type PasteDetails = z.infer<typeof PasteDetailsDto>
