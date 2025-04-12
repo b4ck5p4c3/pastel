@@ -11,13 +11,7 @@ export default async function AuthenticatedLayout ({
     redirect('/api/sso-sign-in')
   }
 
-  return (
-    <div className='relative flex flex-col h-screen'>
-      <main className='container xl:max-w-screen-lg mx-auto pt-6 px-6 flex-grow'>
-        {children}
-      </main>
-    </div>
-  )
+  return children
 }
 
 export const dynamic = 'force-dynamic'

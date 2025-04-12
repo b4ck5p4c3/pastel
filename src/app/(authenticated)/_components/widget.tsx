@@ -127,7 +127,7 @@ const CreatePasteWidget: React.FC = () => {
 
   return (
     <>
-      <section className='flex flex-col h-full gap-6'>
+      <section className='flex flex-col h-full md:h-4/5 gap-6'>
         <Monaco
           className='bg-[#1e1e1e] rounded-sm p-4'
           height='80%'
@@ -144,16 +144,16 @@ const CreatePasteWidget: React.FC = () => {
           }}
           theme='vs-dark'
         />
-        <section className='flex flex-row justify-between items-center'>
-          <section className='flex gap-4'>
+        <section className='flex flex-col md:gap-0 gap-4 md:flex-row justify-between items-center pb-8 md:pb-0'>
+          <section className='flex flex-col md:flex-row gap-4 w-full md:w-auto'>
             <Button
               color='success'
+              fullWidth
               isDisabled={editorContent === undefined}
               isLoading={isLoading}
               onPress={() => saveQuick(editorContent as string, selectedLanguage)}
               size='lg'
               tabIndex={2}
-              variant='bordered'
             >
               Publish for one hour
               <span aria-hidden className='text-success-200 text-sm' hidden={isLoading}>⌘Enter</span>
