@@ -22,6 +22,14 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+COPY ./docker/healthcheck.mjs /app/docker/healthcheck.mjs
+HEALTHCHECK \
+  --interval=30s \
+  --timeout=10s \
+  --start-period=30s \
+  --retries=3 \
+  CMD [ "/usr/local/bin/node", "/app/docker/healthcheck.mjs" ]
+
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
