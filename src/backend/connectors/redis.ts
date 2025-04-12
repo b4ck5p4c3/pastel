@@ -4,7 +4,8 @@ import { environment } from '../config'
 import { log } from '../logger'
 
 const redisClientSingleton = (): Redis => new Redis(
-  environment.REDIS_URL
+  environment.REDIS_URL,
+  { lazyConnect: !!process.env.BUILD }
 )
 
 declare global {
