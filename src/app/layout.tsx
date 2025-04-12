@@ -7,6 +7,7 @@ import './globals.css'
 // eslint-disable-next-line camelcase -- that's how the font is named
 import { Onest, Yeseva_One } from 'next/font/google'
 import { SessionProvider } from 'next-auth/react'
+import { PublicEnvScript } from 'next-runtime-env'
 
 import Navbar from './_components/global-navbar'
 import { Providers } from './providers'
@@ -41,6 +42,7 @@ export default async function RootLayout ({
         <meta content='Pastel' name='apple-mobile-web-app-title' />
         <link href='icons/apple-icon.png' rel='apple-touch-icon' />
         <link href='icons/favicon.png' rel='icon' type='image/png' />
+        <PublicEnvScript />
       </head>
       <body className={`font-sans ${onest.variable} ${yeseva.variable}`}>
         <SessionProvider session={session}>
