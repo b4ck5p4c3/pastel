@@ -1,18 +1,24 @@
-// This file configures the initialization of Sentry on the client.
-// The added config here will be used whenever a users loads a page in their browser.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
+'use client'
 import * as Sentry from '@sentry/nextjs'
-import { env } from 'next-runtime-env'
 
-const dsn = env('NEXT_PUBLIC_SENTRY_DSN')
+declare global {
+  interface Window {
+    __ENV?: Record<string, string>
+  }
+}
+
+// eslint-disable-next-line unicorn/prefer-global-this -- it's easier to keep focus on FE
+const dsn = window.__ENV?.NEXT_PUBLIC_SENTRY_DSN
 
 if (dsn) {
   Sentry.init({
     dsn,
-    integrations: [Sentry.replayIntegration()],
+    integrations: [
+      Sentry.replayIntegration(),
+      Sentry.browserTracingIntegration(),
+      Sentry.browserSessionIntegration()
+    ],
     replaysOnErrorSampleRate: 1,
-    replaysSessionSampleRate: 0.5,
     tracesSampleRate: 1,
   })
 }

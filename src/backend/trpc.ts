@@ -57,12 +57,8 @@ const sentryMiddleware = t.middleware(
 )
 
 export const procedure = t.procedure
+  .experimental_caller(experimental_nextAppDirCaller({}))
   .use(sentryMiddleware)
-  .experimental_caller(
-    experimental_nextAppDirCaller({
-      // pathExtractor: ({ meta }) => (meta as Meta).span,
-    })
-  )
   .use(async (options) => {
     const session = await auth()
     return options.next({ ctx: { user: session?.user ?? null } })

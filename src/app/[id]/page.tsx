@@ -9,7 +9,7 @@ export default async function PasteViewPage (
   const { id } = await params
 
   // Drop all non-zbase32 strings
-  if (!/^[ybndrfg8ejkmcpqxot1uwisza345h769]+$/.test(id)) {
+  if (!/^[ybndrfg8ejkmcpqxot1uwisza345h769]{6}$/.test(id)) {
     notFound()
   }
 
