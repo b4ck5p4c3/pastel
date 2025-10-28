@@ -1,5 +1,5 @@
 {
-  "extends": "@bksp/style-guide/ts",
+  "extends": "@bksp/style-guide/typescript",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
