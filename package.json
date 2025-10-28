@@ -10,7 +10,7 @@
     "dev": "next dev --turbopack",
     "build": "BUILD=1 next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "devDependencies": {
     "@bksp/style-guide": "^1.0.0",
