@@ -9,7 +9,6 @@ const redisClientSingleton = (): Redis => new Redis(
 )
 
 declare global {
-  // eslint-disable-next-line no-var -- var is used to merge with the global namespace
   var redis: ReturnType<typeof redisClientSingleton> | undefined
 }
 
