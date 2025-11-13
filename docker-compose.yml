@@ -23,7 +23,7 @@ services:
 
   valkey:
     image: valkey/valkey:8-alpine
-    command: valkey-server --loglevel debug --save 60 1
+    command: valkey-server --loglevel warning --save 60 1
     restart: unless-stopped
     logging:
       driver: "json-file"
