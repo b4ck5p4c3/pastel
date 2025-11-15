@@ -39,7 +39,9 @@ const CreatePasteWidget: React.FC = () => {
           isEncrypted: properties.encrypt,
           syntaxLanguage: selectedLanguage,
         },
-        visibility: properties.onlyResidents ? PasteVisibility.ResidentsOnly : PasteVisibility.Public
+        visibility: properties.onlyResidents
+          ? PasteVisibility.ResidentsOnly
+          : PasteVisibility.Public
       })
 
       setPasteLink(`${response.link}#${key}`)
@@ -51,7 +53,9 @@ const CreatePasteWidget: React.FC = () => {
           isEncrypted: properties.encrypt,
           syntaxLanguage: selectedLanguage
         },
-        visibility: properties.onlyResidents ? PasteVisibility.ResidentsOnly : PasteVisibility.Public
+        visibility: properties.onlyResidents
+          ? PasteVisibility.ResidentsOnly
+          : PasteVisibility.Public
       })
 
       setPasteLink(response.link)
@@ -166,13 +170,10 @@ const CreatePasteWidget: React.FC = () => {
             aria-label='Programming language for syntax highlighting'
             className='max-w-xs'
             endContent={<span aria-hidden className='select-none text-md text-gray-500'>⌘K</span>}
-            inputProps={{
-              ref: languageInputReference,
-              tabIndex: 1,
-            }}
             isClearable={false}
             onFocus={event => event.target.select()}
             onSelectionChange={lang => lang && selectLanguage(lang as string)}
+            ref={languageInputReference}
             selectedKey={selectedLanguage}
             size='lg'
           >
