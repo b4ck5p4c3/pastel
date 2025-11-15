@@ -61,7 +61,11 @@ export default async function RootLayout ({
 }
 
 export const metadata: Metadata = {
-  title: 'Pastel',
+  robots: {
+    follow: false,
+    index: false,
+  },
+  title: 'Pastel'
 }
 
 export const dynamic = 'force-dynamic'
