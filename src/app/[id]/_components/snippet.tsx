@@ -6,21 +6,12 @@ export type SnippetProperties = {
   language: string;
 }
 
-const handleMonacoMount: OnMount = (editor) => {
-  const range = editor.getModel()?.getFullModelRange()
-  if (range) {
-    editor.focus()
-    editor.setSelection(range)
-  }
-}
-
 const Snippet: React.FC<SnippetProperties> = ({ content, language }) => {
   return (
     <Monaco
       className='bg-[#1e1e1e] rounded-sm p-4'
       defaultLanguage={language}
       height='80%'
-      onMount={handleMonacoMount}
       options={{
         padding: {
           top: 16
