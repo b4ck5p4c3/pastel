@@ -7,8 +7,6 @@ const config: NextConfig = {
 }
 
 export default withSentryConfig(config, {
-  automaticVercelMonitors: false,
-  disableLogger: true,
   org: 'bksp',
   project: 'pastel',
   sentryUrl: 'https://sentry.p.bksp.in/',
