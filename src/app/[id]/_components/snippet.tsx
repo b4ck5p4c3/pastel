@@ -1,5 +1,5 @@
 'use client'
-import Monaco, { type OnMount } from '@monaco-editor/react'
+import Monaco from '@monaco-editor/react'
 
 export type SnippetProperties = {
   content: string;

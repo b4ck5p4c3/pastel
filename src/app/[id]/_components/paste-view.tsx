@@ -4,7 +4,7 @@ import type { PasteDetails } from '@/backend/actions/paste/dto/paste-details.dto
 
 import { PasteExpiration, PasteVisibility } from '@/backend/actions/paste/types'
 import { Button, Link } from '@heroui/react'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import PasteDecrypt from './decrypt'
 import Reveal from './reveal'
@@ -20,7 +20,7 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
   const [content, setContent] = useState(paste.content)
   const [copyButtonLabel, setCopyButtonLabel] = useState('Copy')
   const [rawUrl, setRawUrl] = useState<null | string>(null)
-  const buttonRef = useRef(null);
+  const copyButtonReference = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (
@@ -58,10 +58,8 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
   }
 
   useEffect(() => {
-    if (buttonRef.current && content && isDecrypted) {
-        buttonRef.current.focus();
-    }
-  }, [content, isDecrypted]);
+    copyButtonReference.current?.focus?.()
+  }, [copyButtonReference])
 
   return (
     <section className='flex flex-col h-full gap-6'>
@@ -69,8 +67,8 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
       <section className='flex flex-row gap-6'>
         <Button
           color='secondary'
-          ref={buttonRef}
           onPress={handleContentCopy}
+          ref={copyButtonReference}
           size='md'
           variant='solid'
         >
