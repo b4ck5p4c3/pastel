@@ -1,17 +1,9 @@
 'use client'
-import Monaco, { type OnMount } from '@monaco-editor/react'
+import Monaco from '@monaco-editor/react'
 
 export type SnippetProperties = {
   content: string;
   language: string;
-}
-
-const handleMonacoMount: OnMount = (editor) => {
-  const range = editor.getModel()?.getFullModelRange()
-  if (range) {
-    editor.focus()
-    editor.setSelection(range)
-  }
 }
 
 const Snippet: React.FC<SnippetProperties> = ({ content, language }) => {
@@ -20,7 +12,6 @@ const Snippet: React.FC<SnippetProperties> = ({ content, language }) => {
       className='bg-[#1e1e1e] rounded-sm p-4'
       defaultLanguage={language}
       height='80%'
-      onMount={handleMonacoMount}
       options={{
         padding: {
           top: 16
