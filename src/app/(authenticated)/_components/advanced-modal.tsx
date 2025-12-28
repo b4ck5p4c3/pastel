@@ -19,7 +19,7 @@ const AdvancedOptionsModal: React.FC<AdvancedOptionsModalProperties> = ({
   onClose,
   onConfirm
 }) => {
-  const [expiration, setExpiration] = useState<PasteExpiration>(PasteExpiration.OneHour)
+  const [expiration, setExpiration] = useState<PasteExpiration>(PasteExpiration.OneDay)
   const [shouldEncrypt, setShouldEncrypt] = useState<boolean>(false)
   const [residentsOnly, setResidentsOnly] = useState<boolean>(false)
   const [isUiLoading, setUiLoading] = useState<boolean>(false)
@@ -33,7 +33,7 @@ const AdvancedOptionsModal: React.FC<AdvancedOptionsModalProperties> = ({
     })
 
     // Reset state
-    setExpiration(PasteExpiration.OneHour)
+    setExpiration(PasteExpiration.OneDay)
     setShouldEncrypt(false)
     setResidentsOnly(false)
     setUiLoading(false)

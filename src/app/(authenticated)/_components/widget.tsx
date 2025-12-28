@@ -67,7 +67,7 @@ const CreatePasteWidget: React.FC = () => {
     setIsLoading(true)
     const response = await createPaste({
       content,
-      expiration: PasteExpiration.OneHour,
+      expiration: PasteExpiration.OneDay,
       metadata: {
         isEncrypted: false,
         syntaxLanguage: language,
@@ -159,7 +159,7 @@ const CreatePasteWidget: React.FC = () => {
               size='lg'
               tabIndex={2}
             >
-              Publish for one hour
+              Publish for one day
               <span aria-hidden className='text-success-200 text-sm' hidden={isLoading}>⌘Enter</span>
             </Button>
             <Button color='secondary' isDisabled={isLoading} onPress={() => setAdvancedModalOpen(true)} size='lg' tabIndex={3} variant='light'>
