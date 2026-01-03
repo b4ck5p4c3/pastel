@@ -33,7 +33,7 @@ export async function GET (
       cacheControl = 'no-store'
     } else {
       // Calculate when the paste expires
-      const expiresAt = Math.max(0, Math.floor(paste.expiresAt.getTime() - Date.now() / 1000))
+      const expiresAt = Math.max(0, Math.floor((paste.expiresAt.getTime() - Date.now()) / 1000))
       cacheControl = `private, max-age=${expiresAt}`
     }
 
