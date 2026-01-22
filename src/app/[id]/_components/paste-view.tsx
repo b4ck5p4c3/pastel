@@ -32,6 +32,10 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
     }
   }, [paste])
 
+  useEffect(() => {
+    copyButtonReference.current?.focus?.()
+  }, [copyButtonReference])
+
   const handleContentCopy = () => {
     if (content === null) {
       return
@@ -56,10 +60,6 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
       />
     )
   }
-
-  useEffect(() => {
-    copyButtonReference.current?.focus?.()
-  }, [copyButtonReference])
 
   return (
     <section className='flex flex-col h-full gap-6'>
