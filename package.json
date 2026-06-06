@@ -1,62 +1,55 @@
 {
   "name": "@bksp/pastel",
   "version": "0.0.0",
-  "private": true,
-  "license": "MPL-2.0",
-  "engines": {
-    "node": ">=22"
-  },
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "BUILD=1 next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "devDependencies": {
-    "@bksp/style-guide": "^1.2.6",
-    "@heroicons/react": "^2.2.0",
-    "@heroui/react": "2.8.0-beta.15",
-    "@js-temporal/polyfill": "^0.5.1",
-    "@monaco-editor/react": "^4.7.0",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@trpc/client": "11.7.1",
-    "@trpc/server": "11.8.1",
-    "@tsconfig/strictest": "^2.0.8",
-    "@types/node": "^24.10.4",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.2",
-    "framer-motion": "^12.23.26",
-    "import-in-the-middle": "^2.0.1",
-    "monaco-editor": "0.54.0",
-    "next": "^16.1.1",
-    "next-auth": "5.0.0-beta.25",
-    "next-themes": "^0.4.6",
-    "postcss": "^8.5.6",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "sass": "^1.97.1",
-    "server-only": "^0.0.1",
-    "superjson": "^2.2.6",
-    "syncpack": "14.0.0-alpha.27",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
-    "zod": "^4.2.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@sentry/cli",
-      "esbuild",
-      "sharp"
-    ]
-  },
   "dependencies": {
-    "@sentry/nextjs": "^10.32.1",
-    "age-encryption": "^0.2.4",
-    "ioredis": "^5.8.2",
-    "nanoid": "^5.1.6",
+    "@sentry/nextjs": "^10.56.0",
+    "age-encryption": "^0.3.0",
+    "ioredis": "^5.11.1",
+    "nanoid": "^5.1.11",
     "next-runtime-env": "^3.3.0",
     "tslog": "^4.10.2",
     "zbase32": "^2.0.6"
+  },
+  "devDependencies": {
+    "@bksp/style-guide": "^1.5.0",
+    "@heroicons/react": "^2.2.0",
+    "@heroui/react": "2.8.10",
+    "@js-temporal/polyfill": "^0.5.1",
+    "@monaco-editor/react": "^4.7.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@trpc/client": "11.17.0",
+    "@trpc/server": "11.17.0",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^24.13.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^10.4.1",
+    "framer-motion": "^12.40.0",
+    "import-in-the-middle": "^3.0.1",
+    "monaco-editor": "0.55.1",
+    "next": "^16.2.7",
+    "next-auth": "5.0.0-beta.25",
+    "next-themes": "^0.4.6",
+    "postcss": "^8.5.15",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sass": "^1.100.0",
+    "server-only": "^0.0.1",
+    "superjson": "^2.2.6",
+    "syncpack": "15.3.1",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MPL-2.0",
+  "private": true,
+  "scripts": {
+    "build": "BUILD=1 next build",
+    "dev": "next dev --turbopack",
+    "lint": "eslint",
+    "start": "next start"
   }
 }

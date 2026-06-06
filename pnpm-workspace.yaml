@@ -1,0 +1,9 @@
+publicHoistPattern:
+  - '*@heroui/*'
+allowBuilds:
+  '@heroui/shared-utils': true
+  '@parcel/watcher': true
+  '@sentry/cli': true
+  esbuild: true
+  sharp: true
+  zbase32: true
