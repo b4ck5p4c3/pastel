@@ -30,5 +30,7 @@ export async function encrypt (
  * @returns Generated symmetric key string.
  */
 export async function generateUrlSafeKey (): Promise<string> {
+  // Uses nanoid with zbase32 alphabet underneath, which in turn uses
+  // crypto.getRandomValues for secure random generation.
   return randomBase32(32)
 }
