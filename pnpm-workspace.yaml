@@ -8,3 +8,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
   zbase32: true
+overrides:
+  dompurify@<=3.3.3: ^3.3.4
+  postcss@<8.5.10: ^8.5.10
+  webpack@>=5.49.0 <=5.104.0: ^5.104.1
