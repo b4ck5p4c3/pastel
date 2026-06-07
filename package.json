@@ -7,8 +7,7 @@
     "ioredis": "^5.11.1",
     "nanoid": "^5.1.11",
     "next-runtime-env": "^3.3.0",
-    "tslog": "^4.10.2",
-    "zbase32": "^2.0.6"
+    "tslog": "^4.10.2"
   },
   "devDependencies": {
     "@bksp/style-guide": "^1.5.0",

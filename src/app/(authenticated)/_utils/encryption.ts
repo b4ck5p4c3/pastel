@@ -1,5 +1,6 @@
 import { armor, Decrypter, Encrypter } from 'age-encryption'
-import { encode } from 'zbase32'
+
+import { randomBase32 } from '@/shared/utils/random'
 
 export async function decrypt (
   passphrase: string,
@@ -24,7 +25,10 @@ export async function encrypt (
   return armor.encode(ciphertext)
 }
 
+/**
+ * Generates a random cryptographically secure key that is safe to use in URLs.
+ * @returns Generated symmetric key string.
+ */
 export async function generateUrlSafeKey (): Promise<string> {
-  const entropy = crypto.getRandomValues(new Uint8Array(32))
-  return encode(entropy.buffer)
+  return randomBase32(32)
 }
