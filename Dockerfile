@@ -1,14 +1,14 @@
 # syntax=docker.io/docker/dockerfile:1
 
-FROM node:23-slim AS base
+FROM node:24-slim AS base
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@10 --activate
+RUN corepack enable && corepack prepare pnpm@11 --activate
 
 
 FROM base AS builder
 
 ## Install deps
-COPY package.json pnpm-lock.yaml .npmrc  ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml  ./
 RUN pnpm i --frozen-lockfile
 
 ## Copy rest of the files, and build the app
