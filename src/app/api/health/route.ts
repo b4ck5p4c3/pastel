@@ -1,6 +1,7 @@
+import { NextResponse } from 'next/server'
+
 // eslint-disable-next-line no-restricted-imports -- this one is fine
 import { healthCheck } from '@/backend/connectors/redis'
-import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 

@@ -1,8 +1,3 @@
-export enum PasteVisibility {
-  Public,
-  ResidentsOnly
-}
-
 export enum PasteExpiration {
   AfterFirstRead = 'after-first-read',
   FifteenMinutes = '15m',
@@ -10,6 +5,11 @@ export enum PasteExpiration {
   OneDay = '24h',
   OneHour = '1h',
   OneWeek = '168h'
+}
+
+export enum PasteVisibility {
+  Public,
+  ResidentsOnly
 }
 
 export interface SerialisedPasteMetadata {

@@ -1,8 +1,9 @@
 'use client'
 
-import { PasteExpiration } from '@/backend/actions/paste/types'
 import { Button, Checkbox, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem } from '@heroui/react'
 import { useState } from 'react'
+
+import { PasteExpiration } from '@/backend/actions/paste/types'
 
 import { PasteOptions } from './types'
 

@@ -1,8 +1,9 @@
 'use client'
 
-import { decrypt } from '@/app/(authenticated)/_utils/encryption'
 import { Button, Input } from '@heroui/react'
 import { useEffect, useRef, useState } from 'react'
+
+import { decrypt } from '@/app/(authenticated)/_utils/encryption'
 
 export type PasteDecryptProperties = {
   content: string
@@ -19,9 +20,12 @@ const PasteDecrypt: React.FC<PasteDecryptProperties> = ({ content, onDecrypt }) 
   useEffect(() => {
     const key = globalThis?.location?.hash?.slice(1)
     if (!key) {
-      setGlobalLoading(false)
       return
     }
+
+    // Intentional: Setting loading state before async operation to show UI feedback
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setGlobalLoading(true);
 
     (async () => {
       try {
@@ -37,7 +41,7 @@ const PasteDecrypt: React.FC<PasteDecryptProperties> = ({ content, onDecrypt }) 
         setGlobalLoading(false)
       }
     })()
-  }, [globalThis?.location?.hash])
+  }, [content, onDecrypt])
 
   const attemptDecrypt = async () => {
     setInputLoading(true)

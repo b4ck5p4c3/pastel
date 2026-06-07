@@ -1,10 +1,11 @@
 'use client'
 
+import { Button, Link } from '@heroui/react'
+import { useEffect, useRef, useState } from 'react'
+
 import type { PasteDetails } from '@/backend/actions/paste/dto/paste-details.dto'
 
 import { PasteExpiration, PasteVisibility } from '@/backend/actions/paste/types'
-import { Button, Link } from '@heroui/react'
-import { useEffect, useRef, useState } from 'react'
 
 import PasteDecrypt from './decrypt'
 import Reveal from './reveal'
@@ -19,18 +20,15 @@ const PasteView: React.FC<PasteViewProperties> = ({ id, paste }) => {
   const [isDecrypted, setIsDecrypted] = useState(!paste.metadata.isEncrypted)
   const [content, setContent] = useState(paste.content)
   const [copyButtonLabel, setCopyButtonLabel] = useState('Copy')
-  const [rawUrl, setRawUrl] = useState<null | string>(null)
   const copyButtonReference = useRef<HTMLButtonElement>(null)
 
-  useEffect(() => {
-    if (
-      paste.visibility === PasteVisibility.Public &&
-      paste.expiration !== PasteExpiration.AfterFirstRead &&
-      !paste.metadata.isEncrypted
-    ) {
-      setRawUrl(globalThis.location.href + '/raw')
-    }
-  }, [paste])
+  // Raw url is only available for public, non-encrypted pastes, which are not destroy-on-read.
+  const rawUrl =
+    paste.visibility === PasteVisibility.Public &&
+    paste.expiration !== PasteExpiration.AfterFirstRead &&
+    !paste.metadata.isEncrypted
+      ? globalThis.location.href + '/raw'
+      : null
 
   useEffect(() => {
     copyButtonReference.current?.focus?.()

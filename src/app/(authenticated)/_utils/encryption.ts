@@ -1,9 +1,16 @@
 import { armor, Decrypter, Encrypter } from 'age-encryption'
 import { encode } from 'zbase32'
 
-export async function generateUrlSafeKey (): Promise<string> {
-  const entropy = crypto.getRandomValues(new Uint8Array(32))
-  return encode(entropy.buffer)
+export async function decrypt (
+  passphrase: string,
+  ciphertext: string
+): Promise<string> {
+  const decrypter = new Decrypter()
+  decrypter.addPassphrase(passphrase)
+
+  const decodedCiphertext = armor.decode(ciphertext)
+  const plaintext = await decrypter.decrypt(decodedCiphertext, 'text')
+  return plaintext
 }
 
 export async function encrypt (
@@ -17,14 +24,7 @@ export async function encrypt (
   return armor.encode(ciphertext)
 }
 
-export async function decrypt (
-  passphrase: string,
-  ciphertext: string
-): Promise<string> {
-  const decrypter = new Decrypter()
-  decrypter.addPassphrase(passphrase)
-
-  const decodedCiphertext = armor.decode(ciphertext)
-  const plaintext = await decrypter.decrypt(decodedCiphertext, 'text')
-  return plaintext
+export async function generateUrlSafeKey (): Promise<string> {
+  const entropy = crypto.getRandomValues(new Uint8Array(32))
+  return encode(entropy.buffer)
 }

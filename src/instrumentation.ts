@@ -13,7 +13,7 @@ export async function register () {
     Sentry.init({
       beforeSend (event, hint) {
         // Catch TRPC errors
-        const code = (hint?.originalException as { code?: TRPC_ERROR_CODE_KEY } | undefined)?.code
+        const code = (hint?.originalException as undefined | { code?: TRPC_ERROR_CODE_KEY })?.code
         if (code && TRPC_ERRORS_TO_SKIP.has(code)) {
           return null
         }

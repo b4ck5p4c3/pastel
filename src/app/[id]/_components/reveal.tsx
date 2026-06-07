@@ -1,8 +1,9 @@
 'use client'
 
-import { getPaste } from '@/backend/actions/paste'
 import { addToast, Button } from '@heroui/react'
 import { useState } from 'react'
+
+import { getPaste } from '@/backend/actions/paste'
 
 export type RevealProperties = {
   id: string

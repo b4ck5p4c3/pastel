@@ -1,8 +1,9 @@
+import { TRPCError } from '@trpc/server'
+import { getHTTPStatusCodeFromError } from '@trpc/server/unstable-core-do-not-import'
+
 import { getPaste } from '@/backend/actions/paste'
 import { PasteExpiration } from '@/backend/actions/paste/types'
 import { languageToMimeType } from '@/shared/utils/mime-types'
-import { TRPCError } from '@trpc/server'
-import { getHTTPStatusCodeFromError } from '@trpc/server/unstable-core-do-not-import'
 
 export async function GET (
   _request: Request,

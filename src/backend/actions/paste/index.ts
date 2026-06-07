@@ -1,17 +1,18 @@
 'use server'
 
+import { TRPCError } from '@trpc/server'
+
 import { environment } from '@/backend/config'
 import { redis } from '@/backend/connectors/redis'
 import { procedure, protectedProcedure } from '@/backend/trpc'
 import { randomBase32 } from '@/shared/utils/random'
-import { TRPCError } from '@trpc/server'
 
-import { CreatePasteDto } from './dto/create.dto'
 import { CreatePasteResponseDto } from './dto/create-response.dto'
+import { CreatePasteDto } from './dto/create.dto'
 import { GetPasteDto } from './dto/get.dto'
 import { PasteDetailsDto } from './dto/paste-details.dto'
 import { PasteExpiration, PasteVisibility, SerialisedPasteMetadata } from './types'
-import { PasteExpirationToSeconds } from './utils'
+import { PasteExpirationToSeconds } from './utilities'
 
 /**
  * Paste ID length in Base32 characters.
