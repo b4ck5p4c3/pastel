@@ -34,7 +34,7 @@ export default async function RootLayout ({
   const publicEnvironmentVariables = getPublicEnvironmentVariables()
 
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html className='dark' data-theme='dark' lang='en'>
       <head>
         <meta
           content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no'
