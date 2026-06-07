@@ -14,13 +14,14 @@ import {
   User,
 } from '@heroui/react'
 import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/react'
 import { Key } from 'react'
+
+import { authClient } from '@/auth-client'
 
 const handleAction = (action: Key) => {
   switch (action) {
     case 'signout': {
-      signOut()
+      authClient.signOut()
       break
     }
   }
@@ -50,8 +51,34 @@ const AvatarTrigger: React.FC<{ image: null | string, name: string }> = ({ image
   )
 }
 
+export default function Navbar () {
+  return (
+    <HeroNavbar disableAnimation isBordered>
+      {/* Branding */}
+      <NavbarContent justify='start'>
+        <NavbarBrand role='banner'>
+          <HeroLink
+            aria-label='Go to "New Paste" page'
+            as={Link}
+            className='font-extrabold font-serif text-3xl text-foreground -mt-1.5r'
+            href='/'
+          >
+            Pastel
+            <sup className='text-sm ml-2'>β</sup>
+          </HeroLink>
+        </NavbarBrand>
+      </NavbarContent>
+
+      {/* User menu dropdown */}
+      <NavbarContent className='items-center' justify='end'>
+        <NavbarUserMenu />
+      </NavbarContent>
+    </HeroNavbar>
+  )
+}
+
 function NavbarUserMenu () {
-  const session = useSession()
+  const session = authClient.useSession()
   const user = session.data?.user
 
   if (!user) {
@@ -61,7 +88,7 @@ function NavbarUserMenu () {
   return (
     <Dropdown backdrop='blur' placement='bottom-end'>
       <DropdownTrigger className='cursor-pointer'>
-        <AvatarTrigger image={user.image} name={user.name} />
+        <AvatarTrigger image={user.image ?? null} name={user.name} />
       </DropdownTrigger>
       <DropdownMenu
         aria-label='Profile Actions'
@@ -93,7 +120,6 @@ function NavbarUserMenu () {
                 description: 'text-default-500',
                 name: 'text-default-600',
               }}
-              description={`@${user.username}`}
               name={user.name}
             />
           </DropdownItem>
@@ -103,31 +129,5 @@ function NavbarUserMenu () {
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  )
-}
-
-export default function Navbar () {
-  return (
-    <HeroNavbar disableAnimation isBordered>
-      {/* Branding */}
-      <NavbarContent justify='start'>
-        <NavbarBrand role='banner'>
-          <HeroLink
-            aria-label='Go to "New Paste" page'
-            as={Link}
-            className='font-extrabold font-serif text-3xl text-foreground -mt-1.5r'
-            href='/'
-          >
-            Pastel
-            <sup className='text-sm ml-2'>β</sup>
-          </HeroLink>
-        </NavbarBrand>
-      </NavbarContent>
-
-      {/* User menu dropdown */}
-      <NavbarContent className='items-center' justify='end'>
-        <NavbarUserMenu />
-      </NavbarContent>
-    </HeroNavbar>
   )
 }

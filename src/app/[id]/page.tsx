@@ -1,5 +1,6 @@
-import { getPaste } from '@/backend/actions/paste'
 import { notFound } from 'next/navigation'
+
+import { getPaste } from '@/backend/actions/paste'
 
 import PasteView from './_components/paste-view'
 

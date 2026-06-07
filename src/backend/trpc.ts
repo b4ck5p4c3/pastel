@@ -1,11 +1,13 @@
-import { auth } from '@/auth'
 import { Temporal } from '@js-temporal/polyfill'
 import * as Sentry from '@sentry/nextjs'
 import { initTRPC, TRPCError } from '@trpc/server'
 // eslint-disable-next-line camelcase -- this is an experimental feature
 import { experimental_nextAppDirCaller } from '@trpc/server/adapters/next-app-dir'
+import { headers } from 'next/headers'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
+
+import { auth } from '@/auth'
 
 interface Meta {
   span: string;
@@ -60,7 +62,9 @@ export const procedure = t.procedure
   .experimental_caller(experimental_nextAppDirCaller({}))
   .use(sentryMiddleware)
   .use(async (options) => {
-    const session = await auth()
+    const session = await auth.api.getSession({
+      headers: await headers()
+    })
     return options.next({ ctx: { user: session?.user ?? null } })
   })
 

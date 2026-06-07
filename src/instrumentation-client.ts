@@ -1,14 +1,7 @@
 'use client'
 import * as Sentry from '@sentry/nextjs'
 
-declare global {
-  interface Window {
-    __ENV?: Record<string, string>
-  }
-}
-
-// eslint-disable-next-line unicorn/prefer-global-this -- it's easier to keep focus on FE
-const dsn = window.__ENV?.NEXT_PUBLIC_SENTRY_DSN
+const dsn = document.querySelector('meta[name="sentry-dsn"]')?.getAttribute('content')
 
 if (dsn) {
   Sentry.init({

@@ -1,10 +1,11 @@
 'use client'
 
-import { createPaste } from '@/backend/actions/paste'
-import { PasteExpiration, PasteVisibility } from '@/backend/actions/paste/types'
 import { Autocomplete, AutocompleteItem, Button } from '@heroui/react'
 import Monaco, { OnMount, useMonaco } from '@monaco-editor/react'
 import { useEffect, useRef, useState } from 'react'
+
+import { createPaste } from '@/backend/actions/paste'
+import { PasteExpiration, PasteVisibility } from '@/backend/actions/paste/types'
 
 import { encrypt, generateUrlSafeKey } from '../_utils/encryption'
 import AdvancedOptionsModal from './advanced-modal'
@@ -123,7 +124,7 @@ const CreatePasteWidget: React.FC = () => {
     })
 
     // Update supported languages list
-    setSupportedLanguages(m.languages.getLanguages().map((lang) => lang.id))
+    setSupportedLanguages(m.languages.getLanguages().map((lang: { id: string }) => lang.id))
 
     // Trigger focus on editor area
     editor.focus()

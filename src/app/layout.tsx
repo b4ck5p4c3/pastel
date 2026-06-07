@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
-import { auth } from '@/auth'
-
 import './globals.css'
 
 // eslint-disable-next-line camelcase -- that's how the font is named
 import { Onest, Yeseva_One } from 'next/font/google'
-import { SessionProvider } from 'next-auth/react'
+
+import { getPublicEnvironmentVariables } from '@/shared/utils/environment-variables'
 
 import Navbar from './_components/global-navbar'
-import RuntimeEnvironment from './_components/runtime-environment'
+import SentryDsn from './_components/sentry-dsn'
+import { EnvironmentProvider } from './_providers/environment-context'
 import { Providers } from './providers'
 
 const onest = Onest({
@@ -31,7 +31,8 @@ export default async function RootLayout ({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth()
+  const publicEnvironmentVariables = getPublicEnvironmentVariables()
+
   return (
     <html lang='en' suppressHydrationWarning>
       <head>
@@ -42,19 +43,19 @@ export default async function RootLayout ({
         <meta content='Pastel' name='apple-mobile-web-app-title' />
         <link href='icons/apple-icon.png' rel='apple-touch-icon' />
         <link href='icons/favicon.png' rel='icon' type='image/png' />
-        <RuntimeEnvironment />
+        <SentryDsn />
       </head>
       <body className={`font-sans ${onest.variable} ${yeseva.variable}`}>
-        <SessionProvider session={session}>
-          <Providers>
+        <Providers>
+          <EnvironmentProvider env={publicEnvironmentVariables}>
             <div className='relative flex flex-col h-screen'>
               <Navbar />
-              <main className='container xl:max-w-screen-lg mx-auto pt-6 px-6 flex-grow'>
+              <main className='container xl:max-w-5xl mx-auto pt-6 px-6 grow'>
                 {children}
               </main>
             </div>
-          </Providers>
-        </SessionProvider>
+          </EnvironmentProvider>
+        </Providers>
       </body>
     </html>
   )
